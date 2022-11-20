@@ -1,17 +1,17 @@
 import mysql from "mysql2";
 
-const db = mysql.createConnection(
+const connection = mysql.createConnection(
     {
       host: 'localhost',
-      // MySQL username,
-      user: 'root',
-      
-      database: 'employee_db'
+      // MySQL username, password and database contained in .env file for security
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME
     },
   );
   
-  db.connect(function (err) {
+  connection.connect(function (err) {
     if (err) throw err
   })
 
-  export default db
+  export default connection
