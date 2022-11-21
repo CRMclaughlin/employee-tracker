@@ -5,35 +5,59 @@
 // using sql to query the database
 
 import inquirer from 'inquirer'
-import mysql from 'mysql2'
-import dotenv from 'dotenv'
+import db from './db/connection'
 
 dotenv.config()
 
-const viewDepartment
+const viewDepartment = async () => {
+    try {
+        const [results] = await db.promise().query(
+            'SELECT FROM department'
+        )
+        console.table(results)
+        mainMenu()
+    } catch (err) {
+        throw new Error(err)
+    }
+}
 
-const viewRoles
+// const viewRoles
 
-const viewEmployee
+// const viewEmployee
 
-const addDepartment
+// const addDepartment
 
-const addRole
+// const addRole
 
-const addEmployee
+// const addEmployee
 
-const updateEmployee
+// const updateEmployee
 
 
 const mainMenu = async () => {
-    const options = await inquirer.prompt([{
+    const choices = await inquirer.prompt([{
         type: 'list',
         name: 'options',
         message: 'Choose an option',
         choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update employee']
     }])
 
-    if (answers.options === 'View all departments') {
+    if (answers.choices === 'View all departments') {
         viewDepartment()
-    } 
+    } else if (answers.choices === 'View all roles') {
+        viewRoles()
+    } else if (answers.choices === 'View all employees') {
+        viewEmployee()
+    } else if (answers.choices === 'Add a department') {
+        addDepartment()
+    } else if (answer.choices === 'Add a role') {
+        addRole()
+    } else if (answers.choices === 'Add an employee') {
+        addEmployee()
+    } else if (answers.choices === 'Update employee') {
+        updateEmployee()
+    } else {
+        return
+    }
+
 }

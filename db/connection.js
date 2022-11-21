@@ -1,6 +1,6 @@
 import mysql from "mysql2";
 
-const connection = mysql.createConnection(
+const db = mysql.createConnection(
     {
       host: 'localhost',
       // MySQL username, password and database contained in .env file for security
@@ -10,8 +10,8 @@ const connection = mysql.createConnection(
     },
   );
   
-  connection.connect(function (err) {
+  db.connect(function (err) {
     if (err) throw err
   })
 
-  export default connection
+  export default db
