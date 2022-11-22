@@ -124,7 +124,7 @@ const addEmployee = async () => {
 
 
 const mainMenu = async () => {
-    const choices = await inquirer.prompt([{
+    const answers = await inquirer.prompt([{
         type: 'list',
         name: 'options',
         message: 'Choose an option',
@@ -139,7 +139,7 @@ const mainMenu = async () => {
         viewEmployee()
     } else if (answers.choices === 'Add a department') {
         addDepartment()
-    } else if (answer.choices === 'Add a role') {
+    } else if (answers.choices === 'Add a role') {
         addRole()
     } else if (answers.choices === 'Add an employee') {
         addEmployee()
@@ -150,3 +150,5 @@ const mainMenu = async () => {
     }
 
 }
+
+mainMenu()
