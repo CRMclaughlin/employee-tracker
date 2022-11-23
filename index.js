@@ -12,7 +12,7 @@ import mysql from 'mysql2'
 const viewDepartment = async () => {
     try {
         const [results] = await db.promise().query(
-            'SELECT FROM department'
+            'SELECT * FROM department'
         )
         console.table(results)
         mainMenu()
@@ -24,7 +24,7 @@ const viewDepartment = async () => {
 const viewRoles = async () => {
     try {
         const [results] = await db.promise().query(
-            'SELECT FROM roles'
+            'SELECT * FROM roles'
         )
         console.table(results)
         mainMenu()
@@ -36,7 +36,7 @@ const viewRoles = async () => {
 const viewEmployee = async () => {
     try {
         const [results] = await db.promise().query(
-            'SELECT FROM employee'
+            'SELECT * FROM employee'
         )
         console.table(results)
         mainMenu()
