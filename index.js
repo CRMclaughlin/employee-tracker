@@ -39,37 +39,38 @@ const viewEmployee = async () => {
         throw new Error(err)
     }
 }
-
-// const addDepartment = async () => {
-//     const answers = await inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'deptName',
-//             message: `Name of department you would like to add?`
-//         }
-//     ])
-//     try {
-//         const [results] = await db.promise().query(
-//             'INSERT INTO department (deptName) VALUES ?', answers.name
-//         )
-//         console.table(results)
-//         mainMenu()
-//     } catch (err) {
-//         throw new Error(err)
-//     }
-// }
+// Adds new department
+const addDepartment = async () => {
+    const answers = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'name',
+            message: `Name of department you would like to add?`
+        }
+    ])
+    try {
+        const [results] = await db.promise().query(
+            'INSERT INTO department (name) VALUES (?)', answers.name
+        )
+        console.table(results)
+        mainMenu()
+    } catch (err) {
+        throw new Error(err)
+    }
+}
 
 // const addRole = async () => {
 //     const answers = await inquirer.prompt([
 //         {
 //             type: 'input',
-//             name: 'addRole',
+//             name: 'role',
 //             message: `Which new role would you like to add?`
 //         }
 //     ])
 //     try {
 //         const [results] = await db.promise().query(
-//             'INSERT INTO position (addRole) VALUES ?', answers.name
+//             'INSERT INTO position (role) VALUES (?)
+//             ', answers.roll
 //         )
 //         console.table(results)
 //         mainMenu()
