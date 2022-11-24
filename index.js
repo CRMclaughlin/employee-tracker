@@ -2,8 +2,8 @@ import inquirer from 'inquirer'
 import db from './db/connection.js'
 // import mysql from 'mysql2'
 
-
 const viewDepartment = async () => {
+
     try {
         const [results] = await db.promise().query(
             'SELECT * FROM department'
@@ -19,13 +19,14 @@ const viewRoles = async () => {
     try {
         const [results] = await db.promise().query(
             'SELECT * FROM role'
-        )
-        console.table(results)
-        mainMenu()
-    } catch (err) {
-        throw new Error(err)
+            )
+            console.table(results)
+            mainMenu()
+        } catch (err) {
+            throw new Error(err)
+        }
     }
-}
+    
 
 const viewEmployee = async () => {
     try {
@@ -44,7 +45,7 @@ const viewEmployee = async () => {
 //         {
 //             type: 'input',
 //             name: 'deptName',
-//             message: `Name of department you'd like to add?`
+//             message: `Name of department you would like to add?`
 //         }
 //     ])
 //     try {
@@ -133,24 +134,25 @@ const mainMenu = async () => {
         ]
     }])
 
-    if (answers.choices === 'View all departments') {
+    if (answers.options === 'View all departments') {
         viewDepartment()
-    } else if (answers.choices === 'View all roles') {
+    } else if (answers.options === 'View all roles') {
         viewRoles()
-    } else if (answers.choices === 'View all employees') {
+    } else if (answers.options === 'View all employees') {
         viewEmployee()
-    } else if (answers.choices === 'Add a department') {
+    } else if (answers.options === 'Add a department') {
         addDepartment()
-    } else if (answers.choices === 'Add a role') {
+    } else if (answers.options === 'Add a role') {
         addRole()
-    } else if (answers.choices === 'Add an employee') {
+    } else if (answers.options === 'Add an employee') {
         addEmployee()
-    } else if (answers.choices === 'Update employee') {
+    } else if (answers.options === 'Update employee') {
         updateEmployee()
     } else {
         return
     }
 
 }
+
 
 mainMenu()
