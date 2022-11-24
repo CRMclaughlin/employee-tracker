@@ -37,8 +37,6 @@
     npm run dev
     
   
-## Usage 
-  
 ## Usage
 A command-line application that allows the user to:
 - View departments, roles, and employees
@@ -47,7 +45,7 @@ A command-line application that allows the user to:
   
 ## Demo
 
-View demo [here](https://drive.google.com/file/d/1JGn7ZF51JTqwHtEGCGX8wTk5N9Jku1T6/preview)
+<iframe src="https://drive.google.com/file/d/1JGn7ZF51JTqwHtEGCGX8wTk5N9Jku1T6/preview" width="320" height="240"></iframe>
 
   
 ## License
