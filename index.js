@@ -59,7 +59,7 @@ const addDepartment = async () => {
         throw new Error(err)
     }
 }
-
+// adds role to database
 const addRole = async () => {
     const answers = await inquirer.prompt([
         {
@@ -90,18 +90,35 @@ const addRole = async () => {
         throw new Error(err)
     }
 }
-
+// adds employee to database
 const addEmployee = async () => {
     const answers = await inquirer.prompt([
         {
             type: 'input',
-            name: 'addEmp',
-            message: `Which new employee would you like to add?`
-        }
+            name: 'firstName',
+            message: 'First name of employee: '
+        },
+        {
+            type: 'input',
+            name: 'lastName',
+            message: 'Last name of employee: '
+        },
+        {
+            type: 'list',
+            name: 'roleId',
+            message: 'What role is new employee: ',
+            choices: [{ name: 'Programming', value: 1 }, { name: 'Design', value: 2} , { name: 'Sales', value: 3 }, { name:'Accounting', value: 4 }, { name: 'Management', value: 5 }]
+        },
+        {
+            type: 'list',
+            name: 'manager',
+            message: 'Manager for new employee',
+            choices: [{ name: 'Management:', value: 5}, { name: 'Programmer: ', value: 1 }, { name: 'None', value: null }]
+        },
     ])
     try {
         const [results] = await db.promise().query(
-            'INSERT INTO employee (addEmp) VALUES ?', answers.name
+            'INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)', [answers.firstName, answers.lastName, answers.roleId, answers.manager]
         )
         console.table(results)
         mainMenu()
@@ -125,7 +142,7 @@ const mainMenu = async () => {
             'Add a department',
             'Add a role',
             'Add an employee',
-            'Update employee'
+            'Update employee',
         ]
     }])
 
