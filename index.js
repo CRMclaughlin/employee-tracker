@@ -1,6 +1,6 @@
 import inquirer from 'inquirer'
 import db from './db/connection.js'
-// import mysql from 'mysql2'
+
 
 const viewDepartment = async () => {
 
@@ -46,7 +46,8 @@ const addDepartment = async () => {
             type: 'input',
             name: 'name',
             message: `Name of department you would like to add?`
-        }
+
+        },
     ])
     try {
         const [results] = await db.promise().query(
@@ -59,63 +60,56 @@ const addDepartment = async () => {
     }
 }
 
-// const addRole = async () => {
-//     const answers = await inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'role',
-//             message: `Which new role would you like to add?`
-//         }
-//     ])
-//     try {
-//         const [results] = await db.promise().query(
-//             'INSERT INTO position (role) VALUES (?)
-//             ', answers.roll
-//         )
-//         console.table(results)
-//         mainMenu()
-//     } catch (err) {
-//         throw new Error(err)
-//     }
-// }
+const addRole = async () => {
+    const answers = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'role',
+            message: `Which new role would you like to add?`
+        },
+        {
+            type: 'input',
+            name: 'salary',
+            message: 'Expected salary:'
+        },
+        {
+            type: 'list',
+            name: 'department',
+            message: 'Which department would you like to add role:',
+            choices: [{name: 'Programming', value: 1}, {name: 'Design', value: 2}, {name: 'Sales', value: 3}, { name:'Accounting', value: 4}, {name: 'Management', value: 5}]
+        },
+    ])
+    try {
+        const [results] = await db.promise().query(
+            'INSERT INTO role (title, salary, dept_id) VALUES (?, ?, ?)'
+            , [answers.role, answers.salary, answers.department]
+        )
+        console.table(results)
+        mainMenu()
+    } catch (err) {
+        throw new Error(err)
+    }
+}
 
-// const addEmployee = async () => {
-//     const answers = await inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'addEmp',
-//             message: `Which new employee would you like to add?`
-//         }
-//     ])
-//     try {
-//         const [results] = await db.promise().query(
-//             'INSERT INTO employee (addEmp) VALUES ?', answers.name
-//         )
-//         console.table(results)
-//         mainMenu()
-//     } catch (err) {
-//         throw new Error(err)
-//     }
-// }
+const addEmployee = async () => {
+    const answers = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'addEmp',
+            message: `Which new employee would you like to add?`
+        }
+    ])
+    try {
+        const [results] = await db.promise().query(
+            'INSERT INTO employee (addEmp) VALUES ?', answers.name
+        )
+        console.table(results)
+        mainMenu()
+    } catch (err) {
+        throw new Error(err)
+    }
+}
 
-// const updateEmployee = async () => {
-//     const answers = await inquirer.prompt([
-//         {
-//             type: 'input',
-//             name: 'addRole',
-//             message: `Which new role would you like to add?`
-//         }
-//     ])
-//     try {
-//         const [results] = await db.promise().query(
-//             'INSERT INTO role (addRole) VALUES ?', answers.name
-//         )
-//         console.table(results)
-//         mainMenu()
-//     } catch (err) {
-//         throw new Error(err)
-//     }
-// }
 
 // Function to prompt user for inputs from a list of categories
 
