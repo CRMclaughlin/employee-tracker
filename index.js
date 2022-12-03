@@ -142,7 +142,7 @@ const mainMenu = async () => {
             'Add a department',
             'Add a role',
             'Add an employee',
-            'Update employee',
+            
         ]
     }])
 
@@ -158,8 +158,6 @@ const mainMenu = async () => {
         addRole()
     } else if (answers.options === 'Add an employee') {
         addEmployee()
-    } else if (answers.options === 'Update employee') {
-        updateEmployee()
     } else {
         return
     }
